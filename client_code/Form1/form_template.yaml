@@ -1,0 +1,12 @@
+components:
+- event_bindings: {change: fileLoader_change}
+  layout_properties: {grid_position: 'JVOHDV,YGMPVZ'}
+  name: fileLoader
+  properties: {}
+  type: form:dep_lin1x4oec0ytd:_Components.FileLoader
+- layout_properties: {grid_position: 'ORXPHP,IAXKAW'}
+  name: lblWeatherData
+  properties: {}
+  type: form:dep_lin1x4oec0ytd:_Components.TextInput.TextBox
+container: {type: ColumnPanel}
+is_package: true
