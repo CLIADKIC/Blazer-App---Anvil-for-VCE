@@ -8,5 +8,10 @@ components:
   name: lblWeatherData
   properties: {}
   type: form:dep_lin1x4oec0ytd:_Components.TextInput.TextBox
+- event_bindings: {change: fileLoaderXML_change}
+  layout_properties: {grid_position: 'ZHYYED,PHWVBD'}
+  name: fileLoaderXML
+  properties: {}
+  type: form:dep_lin1x4oec0ytd:_Components.FileLoader
 container: {type: ColumnPanel}
 is_package: true

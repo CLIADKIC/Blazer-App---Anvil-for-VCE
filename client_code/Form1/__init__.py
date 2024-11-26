@@ -1,9 +1,10 @@
 from ._anvil_designer import Form1Template
 from anvil import *
-# import anvil.server
+import anvil.server
 # import anvil.tables as tables
 # from anvil.tables import app_tables
 # import anvil.media
+
 
 # Define a class to handle the weather data
 class WeatherData:
@@ -44,13 +45,28 @@ class Form1(Form1Template):
         for weather in weather_data_list:
             display_text += f"Location: {weather.location}, Date: {weather.date}, Max Temp: {weather.max_temp}°C, Min Temp: {weather.min_temp}°C, Blazer Required: {weather.blazer_required()}"
             alert(weather.blazer_required())
+        self.lblWeatherData.text = display_text
             
-            
-            
-            
+     # Upload XML and read data into class objects
+    def upload_and_process_xml_file(self, file):
+        # Call the server function to process XML
+        weather_data_list = anvil.server.call('process_xml', file)   
+
+        # Display data on the label
+        display_text = ""
+        for weather in weather_data_list:
+            display_text += f"Location: {weather['location']}, Date: {weather['date']}, Max Temp: {weather['max_temp']}°C, Min Temp: {weather['min_temp']}°C\n"
+            blazer_message = "No blazer required" if weather['max_temp'] >= 28 else "Blazer required"
+            alert(blazer_message)
+          
         self.lblWeatherData.text = display_text
 
     # FileLoader change event handler
     def fileLoader_change(self, file, **event_args):
         """This method is called when a new file is loaded into this FileLoader"""
         self.upload_and_process_file(file)
+
+    def fileLoaderXML_change(self, file, **event_args):
+      """This method is called when a new file is loaded into this FileLoader"""
+      pass
+      self.upload_and_process_xml_file(file)
